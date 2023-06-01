@@ -20,7 +20,6 @@ class AuthViewController: UIViewController {
     private let passwordCheckTextField = UITextField()
     private let logInButton = UIButton()
     
-    
     //Logic
     
     //Step 1. Define our Publishers
@@ -35,9 +34,14 @@ class AuthViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor(red: 31/255, green: 26/255, blue: 46/255, alpha: 1)
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         
         authUISetUp()
         authLogic()
+        logInButton.isEnabled = false
     }
     
     
@@ -64,7 +68,11 @@ class AuthViewController: UIViewController {
     var validatedPassword: AnyPublisher<String?, Never>{
         return Publishers.CombineLatest($password, $passwordCheck)
             .map{ password, passwordCheck in
-                guard password == passwordCheck, password.count > 0 else { return nil}
+                guard password == "CombineAuth", password == passwordCheck, password.count > 0 else {
+                    
+                    self.logInButton.backgroundColor = .lightGray
+                    
+                    return nil}
                 return password
             }
             .map {
@@ -81,6 +89,7 @@ class AuthViewController: UIViewController {
                 guard let uName = userName, let pwd = password else {return nil}
                 self.logInButton.backgroundColor = UIColor(red: 99/255, green: 215/255, blue: 197/255, alpha: 1)
                 return (uName, pwd)
+                
             }
         .eraseToAnyPublisher()
     }
@@ -96,16 +105,20 @@ class AuthViewController: UIViewController {
     
     private func authLogic(){
         
-        logInButton.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
-        createSuscriber = validateCredentials
-            .map{$0 != nil}
-            .receive(on: RunLoop.main)
-            .assign(to: \.isEnabled, on: logInButton)
+            logInButton.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
+            createSuscriber = validateCredentials
+                .map{$0 != nil}
+                .receive(on: RunLoop.main)
+                .assign(to: \.isEnabled, on: logInButton)
     }
     
     
     
     @objc private func logInButtonTapped(_ sender: UIButton){
+        
+        userTextField.text = ""
+        passwordTextField.text = ""
+        passwordCheckTextField.text = ""
         
         navigationController?.pushViewController(HomeViewController(), animated: true)
         
@@ -212,12 +225,15 @@ extension AuthViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        let textFieldText = textField.text ?? ""
-        let text = (textFieldText as NSString).replacingCharacters(in: range, with: string)
-        
-        if textField == userTextField { userName = text }
-        if textField == passwordTextField { password = text }
-        if textField == passwordCheckTextField { passwordCheck = text }
+        if let textFieldText = textField.text{
+            
+            let text = (textFieldText as NSString).replacingCharacters(in: range, with: string)
+            
+            if textField == userTextField { userName = text }
+            if textField == passwordTextField { password = text }
+            if textField == passwordCheckTextField { passwordCheck = text }
+
+        }
         
         return true
     }

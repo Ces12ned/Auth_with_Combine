@@ -14,6 +14,8 @@
 		0A6E783A2A16ECA300E72679 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A6E78382A16ECA300E72679 /* LaunchScreen.storyboard */; };
 		0A6E78422A16FD6900E72679 /* TextFieldImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6E78412A16FD6900E72679 /* TextFieldImageExtension.swift */; };
 		0A6E78442A17047000E72679 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6E78432A17047000E72679 /* HomeViewController.swift */; };
+		0AB724BF2A2857CD0035AD8B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB724BE2A2857CD0035AD8B /* User.swift */; };
+		0AB724C12A2857DD0035AD8B /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB724C02A2857DD0035AD8B /* Networking.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		0A6E783B2A16ECA300E72679 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A6E78412A16FD6900E72679 /* TextFieldImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldImageExtension.swift; sourceTree = "<group>"; };
 		0A6E78432A17047000E72679 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		0AB724BE2A2857CD0035AD8B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0AB724C02A2857DD0035AD8B /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +62,34 @@
 		0A6E782C2A16ECA200E72679 /* Auth_Combine */ = {
 			isa = PBXGroup;
 			children = (
+				0AB724BD2A2857B70035AD8B /* Model */,
+				0AB724BC2A2857AB0035AD8B /* Views */,
 				0A6E782D2A16ECA200E72679 /* AppDelegate.swift */,
 				0A6E782F2A16ECA200E72679 /* SceneDelegate.swift */,
-				0A6E78312A16ECA200E72679 /* AuthViewController.swift */,
-				0A6E78432A17047000E72679 /* HomeViewController.swift */,
 				0A6E78362A16ECA300E72679 /* Assets.xcassets */,
 				0A6E78382A16ECA300E72679 /* LaunchScreen.storyboard */,
 				0A6E783B2A16ECA300E72679 /* Info.plist */,
 				0A6E78412A16FD6900E72679 /* TextFieldImageExtension.swift */,
 			);
 			path = Auth_Combine;
+			sourceTree = "<group>";
+		};
+		0AB724BC2A2857AB0035AD8B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0A6E78312A16ECA200E72679 /* AuthViewController.swift */,
+				0A6E78432A17047000E72679 /* HomeViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0AB724BD2A2857B70035AD8B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0AB724BE2A2857CD0035AD8B /* User.swift */,
+				0AB724C02A2857DD0035AD8B /* Networking.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,9 +164,11 @@
 			files = (
 				0A6E78442A17047000E72679 /* HomeViewController.swift in Sources */,
 				0A6E78322A16ECA200E72679 /* AuthViewController.swift in Sources */,
+				0AB724BF2A2857CD0035AD8B /* User.swift in Sources */,
 				0A6E78422A16FD6900E72679 /* TextFieldImageExtension.swift in Sources */,
 				0A6E782E2A16ECA200E72679 /* AppDelegate.swift in Sources */,
 				0A6E78302A16ECA200E72679 /* SceneDelegate.swift in Sources */,
+				0AB724C12A2857DD0035AD8B /* Networking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
