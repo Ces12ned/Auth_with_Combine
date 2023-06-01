@@ -32,12 +32,13 @@ class AuthViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = UIColor(red: 31/255, green: 26/255, blue: 46/255, alpha: 1)
+        
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         
         authUISetUp()
         authLogic()
@@ -68,7 +69,7 @@ class AuthViewController: UIViewController {
     var validatedPassword: AnyPublisher<String?, Never>{
         return Publishers.CombineLatest($password, $passwordCheck)
             .map{ password, passwordCheck in
-                guard password == "CombineAuth", password == passwordCheck, password.count > 0 else {
+                guard password == "a", password == passwordCheck, password.count > 0 else {
                     
                     self.logInButton.backgroundColor = .lightGray
                     
@@ -119,10 +120,11 @@ class AuthViewController: UIViewController {
         userTextField.text = ""
         passwordTextField.text = ""
         passwordCheckTextField.text = ""
+        self.password = ""
+        self.passwordCheck = ""
         
         navigationController?.pushViewController(HomeViewController(), animated: true)
         
-    
     }
     
     

@@ -20,12 +20,23 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.addSubview(tableView)
         tableView.dataSource = self
         tableView.frame = view.bounds
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrowshape.turn.up.backward.fill"), style: .done, target: self, action: #selector(returnToAuth))
+        navigationItem.leftBarButtonItem?.tintColor = UIColor(red: 187/255, green: 145/255, blue: 248/255, alpha: 1)
+        title = "Names"
+        
         Networking.shared.delegate = self
         Networking.shared.loadData()
         
+    }
+    
+    @objc func returnToAuth(){
+
+        navigationController?.popViewController(animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -37,6 +48,9 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         cell.textLabel?.text = users[indexPath.row].name
+        
+        cell.textLabel?.textAlignment = .center
+        cell.selectionStyle = .none
         
         return cell
         
